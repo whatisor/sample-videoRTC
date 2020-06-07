@@ -38,7 +38,9 @@ public class MainActivity extends Activity {
         Log.d(TAG, "onCreate");
         setContentView(R.layout.main_activity);
 
-        addListenerOnButton();
+        //addListenerOnButton();
+        Intent myIntent = new Intent(MainActivity.this, CallActivity.class);
+        startActivity(myIntent);
     }
 
     public void addListenerOnButton() {

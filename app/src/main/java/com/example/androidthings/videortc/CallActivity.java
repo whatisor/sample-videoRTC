@@ -147,7 +147,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         setSwappedFeeds(true /* isSwappedFeeds */);
 
         // Generate a random room ID with 7 uppercase letters and digits
-        String randomRoomID = randomString(7, UPPER_ALPHA_DIGITS);
+        String randomRoomID = "whatisor14";//randomString(7, UPPER_ALPHA_DIGITS);
         // Show the random room ID so that another client can join from https://appr.tc
         TextView roomIdTextView = findViewById(R.id.roomID);
         roomIdTextView.setText(getString(R.string.room_id_caption) + randomRoomID);
@@ -183,7 +183,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
                         0,
                         Integer.parseInt(getString(R.string.pref_maxvideobitratevalue_default)),
                         getString(R.string.pref_videocodec_default),
-                        true,
+                        false,//true,
                         false,
                         Integer.parseInt(getString(R.string.pref_startaudiobitratevalue_default)),
                         getString(R.string.pref_audiocodec_default),
@@ -394,7 +394,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         logAndToast("Creating peer connection, delay=" + delta + "ms");
         VideoCapturer videoCapturer = null;
         if (peerConnectionParameters.videoCallEnabled) {
-            videoCapturer = createVideoCapturer();
+            videoCapturer = null;//createVideoCapturer();
         }
         peerConnectionClient.createPeerConnection(
                 localProxyVideoSink, remoteRenderers, videoCapturer, signalingParameters);

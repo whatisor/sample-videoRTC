@@ -324,7 +324,7 @@ public class PeerConnectionClient {
     localVideoTrack = null;
     remoteVideoTrack = null;
     localVideoSender = null;
-    enableAudio = true;
+    enableAudio = false;
     localAudioTrack = null;
     statsTimer = new Timer();
 
@@ -543,7 +543,7 @@ public class PeerConnectionClient {
     // Check if there is a camera on device and disable video call if not.
     if (videoCapturer == null) {
       Log.w(TAG, "No camera on device. Switch to audio only call.");
-      videoCallEnabled = false;
+      //videoCallEnabled = false;
     }
     // Create video constraints if video call is enabled.
     if (videoCallEnabled) {
@@ -642,10 +642,11 @@ public class PeerConnectionClient {
     Logging.enableLogToDebugOutput(Logging.Severity.LS_INFO);
 
     mediaStream = factory.createLocalMediaStream("ARDAMS");
-    if (videoCallEnabled) {
+    if (videoCapturer != null) {
       mediaStream.addTrack(createVideoTrack(videoCapturer));
     }
 
+    if(enableAudio)
     mediaStream.addTrack(createAudioTrack());
     peerConnection.addStream(mediaStream);
     if (videoCallEnabled) {
@@ -1240,6 +1241,7 @@ public class PeerConnectionClient {
             remoteVideoTrack.setEnabled(renderVideo);
             for (VideoRenderer.Callbacks remoteRender : remoteRenders) {
               remoteVideoTrack.addRenderer(new VideoRenderer(remoteRender));
+              remoteVideoTrack.
             }
           }
         }
